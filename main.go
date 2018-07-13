@@ -16,4 +16,5 @@ func main() {
 func home(resw http.ResponseWriter, req *http.Request) {
 	athl := MakeNewAthlete("phivos", "phivou", time.Now())
 	fmt.Fprintf(resw, "this is just a message passed at %s", athl.String())
+	//test change
 }
