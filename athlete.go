@@ -41,5 +41,5 @@ func (athl *Athlete) String() string {
 
 // LoadHistoricalData loads athletes historical data from record
 func (athl *Athlete) LoadHistoricalData() {
-	//athlete.
+	athl.historical = make([]AthleteAtributes, 0)
 }
