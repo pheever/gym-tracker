@@ -6,11 +6,12 @@
 	</title>
 </head>
 
-<body>
-	Name: {{.Name}} {{.Surname}}<br>
-	<!--Date of birth: {{.Dob}}<br>-->
-	Height: {{.Current.Height}}<br>
-	Weight: {{.Current.Weight}}<br>
+<body>	
+	Name: {{.Name}} {{.Surname}}<br/>
+	Sex: {{if .Sex}} male {{else}} female {{end}}<br/>
+	Date of birth: {{.Dob}}<br/>
+	Height: {{.Current}}<br/>
+	Weight: {{.Current}}<br/>
 </body>
 
 </html>

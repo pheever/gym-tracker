@@ -13,6 +13,12 @@ type Athlete struct {
 	Historical              []AthleteAtributes
 }
 
+// AthleteAtributes provides current athelte attributes
+type AthleteAtributes struct {
+	Weight, Height float32
+	Date           time.Time
+}
+
 // MakeNewAthlete creates a new athlete
 func MakeNewAthlete(name, surname string, dob time.Time) Athlete {
 	return Athlete{
@@ -29,12 +35,6 @@ func MakeNewAthlete(name, surname string, dob time.Time) Athlete {
 	}
 }
 
-// AthleteAtributes provides current athelte attributes
-type AthleteAtributes struct {
-	Weight, Height float32
-	Date           time.Time
-}
-
 func (athl *Athlete) String() string {
 	return athl.Name + " " + athl.Surname + " " + athl.dob.UTC().Format(time.RFC3339)
 }
@@ -42,4 +42,17 @@ func (athl *Athlete) String() string {
 // LoadHistoricalData loads athletes historical data from record
 func (athl *Athlete) LoadHistoricalData() {
 	athl.Historical = make([]AthleteAtributes, 0)
+}
+
+// UpdateCurrentAttributes updates athletes currentattributes
+func (athl *Athlete) UpdateCurrentAttributes(weight, height float32) {
+	athl.Historical = append(athl.Historical,
+		AthleteAtributes{
+			Height: athl.Current.Height,
+			Weight: athl.Current.Weight,
+			Date:   athl.Current.Date,
+		})
+	athl.Current.Height = height
+	athl.Current.Weight = weight
+	athl.Current.Date = time.Now()
 }
