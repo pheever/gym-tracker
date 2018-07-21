@@ -8,7 +8,7 @@ import (
 type Athlete struct {
 	Name, Surname, Nickname string
 	Sex                     bool
-	dob                     time.Time
+	DOB, DOE                time.Time
 	Current                 AthleteAtributes
 	Historical              []AthleteAtributes
 }
@@ -19,24 +19,22 @@ type AthleteAtributes struct {
 	Date           time.Time
 }
 
-// MakeNewAthlete creates a new athlete
-func MakeNewAthlete(name, surname string, dob time.Time) Athlete {
-	return Athlete{
-		dob:     dob,
-		Sex:     false,
-		Name:    name,
-		Surname: surname,
-		Current: AthleteAtributes{
-			Weight: 0,
-			Height: 0,
-			Date:   time.Now(),
-		},
-		Historical: make([]AthleteAtributes, 0),
-	}
+func (athl *Athlete) String() string {
+	return athl.Name + " " + athl.Surname + " " + string(athl.Age())
 }
 
-func (athl *Athlete) String() string {
-	return athl.Name + " " + athl.Surname + " " + athl.dob.UTC().Format(time.RFC3339)
+// Age of the athlete
+func (athl *Athlete) Age() int {
+	age := time.Now().Year() - athl.DOB.Year()
+	if athl.DOB.YearDay() > time.Now().YearDay() {
+		return age - 1
+	}
+	return age
+}
+
+// IsAdult checkswether the athlete is an adult
+func (athl *Athlete) IsAdult() bool {
+	return athl.Age() >= 18
 }
 
 // LoadHistoricalData loads athletes historical data from record

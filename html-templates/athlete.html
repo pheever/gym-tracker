@@ -9,9 +9,10 @@
 <body>	
 	Name: {{.Name}} {{.Surname}}<br/>
 	Sex: {{if .Sex}} male {{else}} female {{end}}<br/>
-	Date of birth: {{.Dob}}<br/>
-	Height: {{.Current}}<br/>
-	Weight: {{.Current}}<br/>
+	Date of birth: {{.DOB}}<br/>
+	Age: {{Age}}
+	Height: {{.Current.Height}}<br/>
+	Weight: {{.Current.Weight}}<br/>
 </body>
 
 </html>
